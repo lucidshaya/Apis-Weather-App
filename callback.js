@@ -1,25 +1,17 @@
-// Promise 
+// Promise for catching errors 
 
-const promise = new Promise((resolve, reject) => {
-
-     const randomNumber = Math.floor(Math.random() * 10 );
-
+const promiseOne  = new Promise((resolve, reject) => {
     setTimeout(() => {
-        if(randomNumber < 8) {
-            resolve("hurray")         
-        } else{
-            reject("failed")         
-        }
-    })
-});
-
-
-
-
-promise
-.then((value) => { 
-    console.log(value);
-    
-}).catch((error) => {
-    console.log(error);
+        resolve('Promise One Resolve')
+    }, 2000)
 })
+
+const promiseTwo  = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('Promise Two Resolve')
+    }, 3000)
+})
+
+Promise.all([promiseOne, promiseTwo])
+.then((data) => console.log(data[0], data[1]))
+.catch((error) => console.log(error));
