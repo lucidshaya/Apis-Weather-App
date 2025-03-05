@@ -1,54 +1,46 @@
-//Promises / Async Await 
+// fetch('https://dummyjson.com/products/1', {})
+// .then(response => console.log(response))
+// .catch(error => console.log(error));
 
-const preHeatOven = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const preHeatOven = true;
-            if (preHeatOven) {
-                resolve('preheat oven 1999');
-            } else {
-                reject("failed task");
-            }
-        }, 1000);
-    });
+
+// fetching and adding new products
+/*
+fetch('https://dummyjson.com/products/add', {
+    method: 'POST', 
+    headers: {
+        'Content-type' : 'application/json'
+    },
+    body: JSON.stringify({
+        title: 'iphone 19',
+        description: 'changed to a better phone',
+        price : '1000',
+        rating: '9/10'
+    })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.log(error));
+
+*/
+
+
+// Define an asynchronous function to get all products
+const getAllProducts = async () => {
+
+    try {
+        // Await the fetch call to get data from the API endpoint
+        const response = await fetch('https://dummyjson.com/products/');
+       
+        // Await the conversion of the response to JSON format
+        const json = await response.json();
+        
+        // Log the JSON data to the console
+        console.log(json);
+    } catch (error) {
+        // Log any errors that occur during the fetch or JSON conversion
+        console.log(error);
+    }
 }
 
-const addSugarChips = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const sugarChipsAdded = true;
-            if (sugarChipsAdded) {
-                resolve('sugar chips added');
-            } else {
-                reject("failed to add sugar chips");
-            }
-        }, 1000);
-    });
-}
-
-const addMilkBiscuits = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const milkBiscuitsAdded = true;
-            if (milkBiscuitsAdded) {
-                resolve('milk biscuits added');
-            } else {
-                reject("failed to add milk biscuits");
-            }
-        }, 1000);
-    });
-}
-    
-const bakeChocolateBrownies = async () => {
-    const taskone = await preHeatOven();
-    console.log(taskone);
-
-    const tasktwo = await addSugarChips();
-    console.log(tasktwo);
-    
-    const taskThree = await addMilkBiscuits();
-    console.log(taskThree);
-    
-}
-
-bakeChocolateBrownies()
+// Call the function to execute the code
+getAllProducts();
