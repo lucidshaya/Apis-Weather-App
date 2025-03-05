@@ -1,46 +1,27 @@
-// fetch('https://dummyjson.com/products/1', {})
-// .then(response => console.log(response))
-// .catch(error => console.log(error));
-
-
-// fetching and adding new products
-/*
-fetch('https://dummyjson.com/products/add', {
-    method: 'POST', 
-    headers: {
-        'Content-type' : 'application/json'
-    },
-    body: JSON.stringify({
-        title: 'iphone 19',
-        description: 'changed to a better phone',
-        price : '1000',
-        rating: '9/10'
-    })
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.log(error));
-
-*/
-
-
-// Define an asynchronous function to get all products
-const getAllProducts = async () => {
-
+// Define an asynchronous function to load a joke
+const LoadJoke = async () => {
     try {
-        // Await the fetch call to get data from the API endpoint
-        const response = await fetch('https://dummyjson.com/products/');
-       
-        // Await the conversion of the response to JSON format
-        const json = await response.json();
+        // Fetch a random joke from the Chuck Norris API
+        const chunkJokes = await fetch('https://api.chucknorris.io/jokes/random', {
+            headers: {
+                Accept: "application/json" // Specify that we want JSON response
+            }
+        });
+        console.log(chunkJokes);
         
-        // Log the JSON data to the console
-        console.log(json);
-    } catch (error) {
-        // Log any errors that occur during the fetch or JSON conversion
+        // Parse the JSON response
+        const jokeData = await chunkJokes.json();
+        
+        // Update the HTML element with id 'joke' to display the joke
+        document.getElementById('joke').innerHTML = jokeData.value;
+    }
+    catch(error) {
+        // Log any errors that occur during the fetch or JSON parsing
         console.log(error);
     }
 }
 
-// Call the function to execute the code
-getAllProducts();
+// Add an event listener to the button with id 'jokeBtn'
+// When the button is clicked, the LoadJoke function is called
+document.getElementById('jokeBtn').addEventListener("click", LoadJoke);
+
