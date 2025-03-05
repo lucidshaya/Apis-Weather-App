@@ -1,9 +1,56 @@
-// synchronous code
+console.log("step 1");
 
-console.log(1);
-setTimeout(() => console.log(2), 2000);
-console.log(3);
+function task1(callback) {
+    setTimeout(() => {
+        console.log("step 2");
+        callback();
+    }, 2000);
+}
 
+function task2(callback) {
+    setTimeout(() => {
+        console.log("step 4");
+        callback();
+    }, 2000);
+}
 
-// An object that may return a value is called a promise
-// 3 states 1 pending 2 fufiled 3 rejected 
+function task3(callback) {
+    setTimeout(() => {
+        console.log("step 5");
+        callback();
+    }, 2000);
+}
+
+function task4(callback) {
+    setTimeout(() => {
+        console.log("step 6");
+        callback();
+    }, 2000);
+}
+
+function task5(callback) {
+    setTimeout(() => {
+        console.log("step 7");
+        callback();
+    }, 2000);
+}
+
+function task6(callback) {
+    setTimeout(() => {
+        console.log("step 8");
+        callback();
+    }, 2000);
+}
+task1(() => {
+    task2(() => {
+        task3(() => {
+            task4(() => {
+                task5(() => {
+                    task6(() => {
+                        console.log("All tasks completed");
+                    });
+                });
+            });
+        });
+    });
+});
