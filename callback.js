@@ -1,56 +1,36 @@
-console.log("step 1");
+// async
 
-function task1(callback) {
+const showMessage = (message) => { // Function to display a message
+    console.log(message); // Log the message to the console
+};
+
+const firstMessage = (callback) => { // Function to show the first message and then call a callback
+    setTimeout(() => { // Delay execution by 2 seconds
+        showMessage('Hello'); // Show 'Hello' message
+        callback(); // Call the callback function
+    }, 2000);
+};
+
+const secondMessage = () => { // Function to show the second message
+    showMessage('world!'); // Show 'world!' message
+};
+
+firstMessage(secondMessage); // Call firstMessage and pass secondMessage as the callback
+
+
+const displayLogs = (logs) => { // Function to display logs
+    console.log(logs); // Log the logs to the console
+};
+
+const showlogs = (callback) => {
     setTimeout(() => {
-        console.log("step 2");
-        callback();
+      displayLogs('user, 1 , 2 , 3 , 4 , 5')
+      callback();
     }, 2000);
 }
 
-function task2(callback) {
-    setTimeout(() => {
-        console.log("step 4");
-        callback();
-    }, 2000);
+const showPasswords = (pass) => {
+    console.log(pass);
 }
 
-function task3(callback) {
-    setTimeout(() => {
-        console.log("step 5");
-        callback();
-    }, 2000);
-}
-
-function task4(callback) {
-    setTimeout(() => {
-        console.log("step 6");
-        callback();
-    }, 2000);
-}
-
-function task5(callback) {
-    setTimeout(() => {
-        console.log("step 7");
-        callback();
-    }, 2000);
-}
-
-function task6(callback) {
-    setTimeout(() => {
-        console.log("step 8");
-        callback();
-    }, 2000);
-}
-task1(() => {
-    task2(() => {
-        task3(() => {
-            task4(() => {
-                task5(() => {
-                    task6(() => {
-                        console.log("All tasks completed");
-                    });
-                });
-            });
-        });
-    });
-});
+showlogs(showPasswords)
