@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="callback.js" defer></script>
+    <title>Weather App</title>
     <link rel="stylesheet" href="index.css">
-    <title>CHUCKNorris</title>
 </head>
 <body>
-        <div>
-            <h1>JOKE EMULATOR</h1>
-            <p id="joke"></p>
-            <button id="jokeBtn">Get a Joke</button>
-        </div>
+    <input type="text" id="search-bar-input" placeholder="Enter city name">
+    <button id="search-icon">Search</button>
+    
+    <div id="weather-info">
+        <h2 id="citynamee"></h2>
+        <div id="date"></div>
+        <div id="temperature"></div>
+        <div id="description"></div>
+        <div id="highs"></div>
+        <div id="lows"></div>
+    </div>
+
+    <script src="callback.js"></script>
 </body>
 </html>
